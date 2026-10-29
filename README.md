@@ -4,7 +4,7 @@
 
 ## Introducción
 
-Este repositorio es la resolución de la **Práctica Nº 3 – FreeRTOS**. El enunciado completo está en este mismo repo: [Práctica Nº 3 (PDF)](Práctica Nro 3.pdf). Lo voy a ir referenciando a medida que resuelvo cada ejercicio.
+Este repositorio es la resolución de la **Práctica Nº 3 – FreeRTOS**. El enunciado completo está en este mismo repo: [Práctica Nº 3 (PDF)](Práctica_Nro_3.pdf). Lo voy a ir referenciando a medida que resuelvo cada ejercicio.
 
 Dentro del repositorio van a encontrar:
 
