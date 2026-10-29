@@ -4,7 +4,7 @@
 
 ## Introducción
 
-Este repositorio es la resolución de la **Práctica Nº 3 – FreeRTOS**. El enunciado completo está en este mismo repo: [Práctica Nº 3 (PDF)](Pr%C3%A1ctica_Nro_3.pdf). Lo voy a ir referenciando a medida que resuelvo cada ejercicio.
+Este repositorio es la resolución de la **Práctica Nº 3 – FreeRTOS**. El enunciado completo está en este mismo repo: [Práctica Nº 3 (PDF)](Práctica Nro 3.pdf). Lo voy a ir referenciando a medida que resuelvo cada ejercicio.
 
 Dentro del repositorio van a encontrar:
 
@@ -15,6 +15,9 @@ Dentro del repositorio van a encontrar:
 ## Antes de empezar: el entorno que usé
 
 La práctica se podía hacer con una placa Arduino UNO física o simulando una en Proteus 8. Yo intente usar Proteus: me descargué el IDE de Arduino, armé en Proteus un Arduino UNO con una terminal virtual y seguí la guía de instalación.
+
+<img width="1217" height="688" alt="proteus" src="https://github.com/user-attachments/assets/c830941e-4a6b-48ed-818c-bd1ddb84cbc5" />
+
 
 El problema es que no sé si fue porque Proteus iba muy lento o por otra razón, pero las salidas de la consola no se comportaban como deberían: o nunca se interrumpían, o la consola se tildaba y directamente no imprimía nada. Así no había forma de sacar conclusiones de las pruebas.
 
@@ -122,7 +125,7 @@ Resumen de las 6 pruebas (en todas el tamaño de pila es 128):
 
 ### Test 1: misma prioridad y solo con delay
 
-[test_1.png]
+<img width="1865" height="829" alt="test_1" src="https://github.com/user-attachments/assets/b52acd1b-4929-4b84-966a-7a7ee652e5b8" />
 
 Las tres tareas tienen la misma prioridad (1) y un `vTaskDelay(200)` al final de cada ciclo. El resultado es la secuencia `Tarea 1 – Tarea 2 – Tarea 3` repetida una y otra vez, **en orden y sin que se pisen los mensajes**.
 
@@ -137,7 +140,8 @@ Las tareas pasan casi todo el tiempo bloqueadas y casi nunca compiten realmente 
 
 ### Test 2: distintas prioridades con delay
 
-[test_2.png]
+<img width="1854" height="844" alt="test_2" src="https://github.com/user-attachments/assets/3b5c185a-f00d-4d33-a0a7-b72e52c72d56" />
+
 
 Ahora T1 tiene prioridad 1, T2 prioridad 2 y T3 prioridad 3, con el mismo `vTaskDelay(200)`. Cambia el orden de impresión: ahora sale `Tarea 3 – Tarea 2 – Tarea 1`. Siguen sin pisarse.
 
@@ -145,7 +149,8 @@ La razón es que cuando las tres se despiertan juntas, el planificador elige sie
 
 ### Test 3: prioridades mixtas y delays distintos
 
-[test_3.png]
+<img width="1881" height="820" alt="test_3" src="https://github.com/user-attachments/assets/0817d215-450f-47cd-94c1-2dcdd3f4d6bc" />
+
 
 Acá dejé T1 y T3 con la misma prioridad (1) y a T2 con una prioridad mayor (2). Además, a T3 le puse un delay de la mitad, `vTaskDelay(100)`, mientras que T1 y T2 siguen con 200.
 
@@ -159,7 +164,8 @@ Entonces cada 200 ticks las tres coinciden y se imprime `2 – 1 – 3`, y 100 t
 
 ### Test 4: misma prioridad y sin delays
 
-[test_4.png]
+<img width="1843" height="879" alt="test_4" src="https://github.com/user-attachments/assets/acaadb8b-b1fc-470e-8e92-8f44fca4824f" />
+
 
 Acá se pone divertido. Saqué los `vTaskDelay` y dejé las tres tareas con la misma prioridad. Ahora ninguna se bloquea nunca, así que las tres están siempre listas para ejecutar. La salida queda **toda mezclada**: aparecen "Tarea" cortados, números pegados a la línea anterior, `Tarea 1Tarea 2`, etc.
 
@@ -174,7 +180,8 @@ Esto es el problema que se resuelve con las herramientas de sincronización de l
 
 ### Test 5: distintas prioridades y sin delays
 
-[test_5.png]
+<img width="1872" height="750" alt="test_5" src="https://github.com/user-attachments/assets/1ff5ea0d-5262-4728-a8ec-b3fa496eda98" />
+
 
 Con T1 = 1, T2 = 2 y T3 = 3 y sin delays, **solo se imprime `Tarea 3`**, una y otra vez. Nunca aparecen la 1 ni la 2.
 
@@ -183,7 +190,8 @@ La razón es cómo funciona un planificador preventivo con prioridades fijas: si
 
 ### Test 6: dos tareas con la misma prioridad alta
 
-[test_6.png]
+<img width="1857" height="777" alt="test_6" src="https://github.com/user-attachments/assets/c1ed6462-f443-4053-94f7-b50f8e4692a5" />
+
 
 Acá T2 y T3 tienen prioridad 3 y T1 tiene prioridad 1, sin delays. Pasan dos cosas a la vez:
 
@@ -270,7 +278,7 @@ Además de estas, FreeRTOS tiene otras herramientas, como los *event groups* y l
 
 ### Ejercicio 4-A
 
-[4-A.png]
+<img width="438" height="758" alt="4-A" src="https://github.com/user-attachments/assets/338b7d60-a921-4e2a-a489-676d94cb212d" />
 
 En esta imagen no pongo el código porque no entra en una captura. Lo pueden ver completo acá: [Ejercicio_4_A.ino](Ejercicio_4/Ejercicio_4_A.ino).
 
@@ -293,7 +301,7 @@ A diferencia del 4-A, acá no dejo solo el enlace al código: lo explico con im�
 
 #### Cómo funciona
 
-[configuracion.png]
+<img width="1216" height="800" alt="configuracion" src="https://github.com/user-attachments/assets/1bfcad50-26b4-48cb-b81f-451d0917321e" />
 
 La idea es tener **una sola función `Tarea`** que sirve para las tres tareas y una **tabla con la secuencia** que se quiere imprimir:
 
@@ -317,7 +325,8 @@ Dos cosas que hacen que esto ande bien:
 
 #### Cómo se inicializa
 
-[setup.png]
+<img width="1137" height="663" alt="setup" src="https://github.com/user-attachments/assets/0f141d40-89dc-46e0-b266-71a16e5c1798" />
+
 
 En el `setup`:
 
@@ -329,19 +338,21 @@ En el `setup`:
 
 #### Resultado 4-B: `Tarea 2 – Tarea 2 – Tarea 3 – Tarea 1`
 
-[4-B.png]
+<img width="530" height="762" alt="4-B" src="https://github.com/user-attachments/assets/ff773904-bd53-4980-9872-27de20530bfa" />
+
 
 Con `secuencia = {2, 2, 3, 1}` se imprime la secuencia B, repetida de forma constante y sin mezclarse.
 
 #### Resultado 4-C: `Tarea 3 – Tarea 3 – Tarea 3 – Tarea 1 – Tarea 2`
 
-[4-C.png]
+<img width="346" height="693" alt="4-C" src="https://github.com/user-attachments/assets/257a29d9-abb9-40cd-9d09-c8262a9451c7" />
+
 
 Con `secuencia = {3, 3, 3, 1, 2}` se imprime la secuencia C. Lo único que cambié respecto de la prueba anterior fue el contenido del arreglo `secuencia`.
 
 #### Cualquier secuencia que queramos
 
-[1_1_1_1_1_2_1_3.png]
+<img width="270" height="304" alt="1,1,1,1,1,2,1,3" src="https://github.com/user-attachments/assets/8ae529d1-23cb-4140-b269-6e5c7e9577fe" />
 
 Para probar que la solución es realmente general, armé una secuencia rara: `{1,1,1,1,1,2,1,3}`. En la imagen se ve cómo sale cinco veces la Tarea 1, después la 2, otra vez la 1 y por último la 3, y vuelve a empezar.
 
