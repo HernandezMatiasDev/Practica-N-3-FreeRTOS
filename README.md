@@ -297,7 +297,7 @@ La verdad es que fue divertido armar los semáforos, y muy interesante hacerlo d
 
 Este fue el ejercicio más difícil. Para las secuencias B y C hay tareas que se repiten (la 2 dos veces seguidas, la 3 tres veces), y no queria hacer una cadena fija como en el 4-A, queria hacer una solución general.
 
-A diferencia del 4-A, acá no dejo solo el enlace al código: lo explico con imágenes. El código completo está en [Ejercicio_4_B-C.ino](Ejercicio_4/Ejercicio_4_B-C.ino).
+El código completo está en [Ejercicio_4_B-C.ino](Ejercicio_4/Ejercicio_4_B-C.ino).
 
 #### Cómo funciona
 
@@ -318,7 +318,7 @@ Cada tarea hace lo siguiente en su ciclo:
 3. Avanza el índice: `tarea_actual = (tarea_actual + 1) % longitud`. El `%` hace que, al llegar al final de la secuencia, vuelva a empezar de cero y la secuencia se repita para siempre.
 4. Le da el semáforo a la tarea que corresponde al nuevo paso: `xSemaphoreGive(sem[secuencia[tarea_actual] - 1])`.
 
-Dos cosas que hacen que esto ande bien:
+Dos cosas que hacen que esto funcione bien:
 
 - Hay un solo semáforo disponible a la vez (el del turno actual), así que nunca imprimen dos tareas al mismo tiempo. Por eso `tarea_actual` tampoco necesita protección extra: solo la modifica la tarea que tiene el turno.
 - Si la secuencia pide que la misma tarea vaya dos veces seguidas (como el `2, 2`), la tarea se da el semáforo a sí misma. Al volver al inicio de su ciclo, el `take` lo consigue enseguida y vuelve a imprimir.
